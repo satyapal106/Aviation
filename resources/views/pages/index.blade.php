@@ -1514,7 +1514,7 @@
                                                     <div class="course-content-header">
                                                         <h3 class="title">
                                                             <a href="{{url('/courses-details')}}">
-                                                                {{ $item->heading }}
+                                                                {{ $item->course_name }}
                                                             </a>
                                                         </h3>
                                                         <span class="time"><i class="las la-clock"></i> 45 Hours</span>

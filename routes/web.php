@@ -55,55 +55,47 @@ Route::post('admin/logout', [LoginController::class, 'logout'])->name('admin.log
 Route::middleware(['auth:employee', 'role:Admin'])->group(function () {
     // Existing admin resource routes...
 
-    // HomeCareer Routes
-    Route::resource('homecareer', \App\Http\Controllers\HomeCareerController::class);
+    Route::prefix('admin')->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+        Route::resource('homecareer', \App\Http\Controllers\HomeCareerController::class);
+        Route::resource('employees', EmployeeController::class);
+        Route::resource('roles', RoleController::class);
+        Route::resource('permissions', PermissionController::class);
 
-    // Admin Dashboard
-    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+        // Role-Permission Routes
+        Route::get('role-permissions', [RoleHasPermissionController::class, 'index'])->name('role-permissions.index');
+        Route::get('role-permissions/{role_id}/edit', [RoleHasPermissionController::class, 'edit'])->name('role-permissions.edit');
+        Route::put('role-permissions/{role_id}', [RoleHasPermissionController::class, 'update'])->name('role-permissions.update');
 
-    // Employees Routes
-    Route::resource('employees', EmployeeController::class);
+        // About us Routes
+        Route::resource('about', AboutUsController::class);
 
-    // Roles Routes
-    Route::resource('roles', RoleController::class);
+        // Why Vihanga Routes
+        Route::resource('highlights', HighlightController::class);
 
-    // Permissions Routes
-    Route::resource('permissions', PermissionController::class);
+        // Courses Routes
+        Route::resource('courses', CourseController::class);
 
-    // Role-Permission Routes
-    Route::get('role-permissions', [RoleHasPermissionController::class, 'index'])->name('role-permissions.index');
-    Route::get('role-permissions/{role_id}/edit', [RoleHasPermissionController::class, 'edit'])->name('role-permissions.edit');
-    Route::put('role-permissions/{role_id}', [RoleHasPermissionController::class, 'update'])->name('role-permissions.update');
+        // Course Phases Routes
+        Route::resource('course_phases', CoursePhaseController::class);
 
-    // About us Routes
-    Route::resource('about', AboutUsController::class);
+        // Course Eligibilities Routes
+        Route::resource('course_eligibilities', CourseEligibilityController::class);
 
-    // Why Vihanga Routes
-    Route::resource('highlights', HighlightController::class);
+        // Selection Processes Routes
+        Route::resource('selection_processes', SelectionProcessController::class);
 
-    // Courses Routes
-    Route::resource('courses', CourseController::class);
+        // Facilities Routes
+        Route::resource('facilities', FacilityController::class);
 
-    // Course Phases Routes
-    Route::resource('course_phases', CoursePhaseController::class);
+        // Careers Routes
+        Route::resource('careers', CareerController::class);
 
-    // Course Eligibilities Routes
-    Route::resource('course_eligibilities', CourseEligibilityController::class);
+        // Gallery Routes
+        Route::resource('gallery', GalleryController::class);
+        Route::delete('gallery/{gallery}/image', [GalleryController::class, 'deleteImage'])->name('gallery.deleteImage');
 
-    // Selection Processes Routes
-    Route::resource('selection_processes', SelectionProcessController::class);
-
-    // Facilities Routes
-    Route::resource('facilities', FacilityController::class);
-
-    // Careers Routes
-    Route::resource('careers', CareerController::class);
-
-    // Gallery Routes
-    Route::resource('gallery', GalleryController::class);
-    Route::delete('gallery/{gallery}/image', [GalleryController::class, 'deleteImage'])->name('gallery.deleteImage');
-
-    // FAQ Routes
-    Route::resource('faq', FaqController::class);
-
+        // FAQ Routes
+        Route::resource('faq', FaqController::class);
+    });
 });
