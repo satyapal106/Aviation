@@ -138,6 +138,31 @@
                     <span x-show="!collapsed">Role Permissions</span>
                 </a>
 
+               {{-- Hero Banner --}}
+                    {!! menuItem(
+                        'Hero Banner',
+                        'fa-solid fa-circle-info',
+                        '
+                            <a href="' . route('hero.index') . '" class="submenu">View Hero Banner</a>
+                        '
+                    ) !!}
+
+
+                {{-- Highlights --}}
+                {{-- {!! menuItem(
+                    'Highlights',
+                    'fa-solid fa-star',
+                    '
+                                        <a href="' .
+                        route('hero.index') .
+                        '" class="submenu">View Highlights</a>
+                                        <a href="' .
+                        route('highlights.create') .
+                        '" class="submenu">Add Highlight</a>
+                                    ',
+                ) !!} --}}
+
+
                 {{-- About Us --}}
                 {!! menuItem(
                     'About Us',
