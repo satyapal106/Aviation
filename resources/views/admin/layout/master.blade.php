@@ -146,7 +146,7 @@
                             <a href="' . route('hero.index') . '" class="submenu">View Hero Banner</a>
                         '
                     ) !!}
-
+                   
 
                 {{-- Highlights --}}
                 {{-- {!! menuItem(
@@ -161,6 +161,16 @@
                         '" class="submenu">Add Highlight</a>
                                     ',
                 ) !!} --}}
+
+               {{-- Why Vaa Menu --}}
+               
+                {!! menuItem(
+                    'Why Vaa',
+                    'fa-solid fa-circle-info',
+                    '
+                        <a href="' . route('whyvaa.index') . '" class="submenu">View Why Vaa</a>
+                    '
+                ) !!}
 
 
                 {{-- About Us --}}

@@ -19,7 +19,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\HeroController;
-
+use App\Http\Controllers\WhyVaaController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -67,8 +67,12 @@ Route::middleware(['auth:employee', 'role:Admin'])->group(function () {
         Route::get('role-permissions/{role_id}/edit', [RoleHasPermissionController::class, 'edit'])->name('role-permissions.edit');
         Route::put('role-permissions/{role_id}', [RoleHasPermissionController::class, 'update'])->name('role-permissions.update');
 
-
+        // Hero Routes
         Route::resource('hero', HeroController::class);
+
+        // Why Vaa
+         Route::resource('whyvaa', WhyVaaController::class);
+
         // About us Routes
         Route::resource('about', AboutUsController::class);
 
